@@ -4,7 +4,7 @@ const score = document.querySelector('.score'),
     gameArea = document.querySelector('.gameArea'),
     car = document.createElement('div');
 
-    
+
 car.classList.add('car');
     
 begin.addEventListener('click',startGame);
@@ -33,7 +33,7 @@ function startGame(){
 }
 
 function playGame (){
-    console.log('Play Game');
+    // console.log('Play Game');
     if (setting.start){
         requestAnimationFrame(playGame);
     }
