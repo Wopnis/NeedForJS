@@ -1,0 +1,9 @@
+.hide {
+    display: none;
+}
+
+.car {
+    width: 100px;
+    height: 75px;
+    background: transparent url(./image/player2.png) center / cover no-repeat;
+}
