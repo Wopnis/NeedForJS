@@ -1,5 +1,5 @@
 # NeedForJS
 
-JavaScrippt game
+JavaScript game
 
 ![ NeedForJS ] (scshot.PNG)
