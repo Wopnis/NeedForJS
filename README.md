@@ -2,4 +2,4 @@
 
 JavaScrippt game
 
-![ NeedForJS ] (scshot.PNGgit)
+![ NeedForJS ] (scshot.PNG)
