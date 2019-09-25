@@ -6,19 +6,19 @@ const score = document.querySelector('.score'),
     music = document.createElement('embed'),
     crash = document.createElement('embed');
 
-    music.setAttribute('src','./audio.mp3');
-    music.setAttribute('type', 'audio/mp3');
-    music.classList.add('music');
+music.setAttribute('src', './audio.mp3');
+music.setAttribute('type', 'audio/mp3');
+music.classList.add('music');
 
-    crash.setAttribute('src', './audio2.mp3');
-    crash.setAttribute('type', 'audio/mp3');
-    crash.classList.add('music');
-        
+crash.setAttribute('src', './audio2.mp3');
+crash.setAttribute('type', 'audio/mp3');
+crash.classList.add('music');
+
 
 
 car.classList.add('car');
-    
-start.addEventListener('click',startGame);
+
+start.addEventListener('click', startGame);
 document.addEventListener('keydown', startRun);
 document.addEventListener('keyup', stopRun);
 
@@ -36,32 +36,32 @@ const setting = {
     traffic: 3
 };
 
-function getQuantityElements(heightElement){
-    return document.documentElement.clientHeight/ heightElement + 1;
+function getQuantityElements(heightElement) {
+    return document.documentElement.clientHeight / heightElement + 1;
 }
- 
+
 // console.log(getQuantityElements(200));
 
-function startGame(){
+function startGame() {
     start.classList.add('hide');
     gameArea.innerHTML = '';
 
 
-    for (let i = 0; i < getQuantityElements(100); i++){
+    for (let i = 0; i < getQuantityElements(100); i++) {
         const line = document.createElement('div');
         line.classList.add('line');
-        line.style.top = (i*100) + 'px';
-        line.y = i*100;
+        line.style.top = (i * 100) + 'px';
+        line.y = i * 100;
         gameArea.appendChild(line);
     }
 
-    for(let i = 0; i< getQuantityElements(100*setting.traffic); i++){
+    for (let i = 0; i < getQuantityElements(100 * setting.traffic); i++) {
         const enemy = document.createElement('div');
-        let enemyImg = Math.floor(Math.random()*2)+1;
+        let enemyImg = Math.floor(Math.random() * 2) + 1;
         // console.log(enemyImg);
         enemy.classList.add('enemy');
-        enemy.y = -100*setting.traffic*(i + 1);
-        enemy.style.left = Math.floor(Math.random()* (gameArea.offsetWidth - 50)) + 'px';
+        enemy.y = -100 * setting.traffic * (i + 1);
+        enemy.style.left = Math.floor(Math.random() * (gameArea.offsetWidth - 50)) + 'px';
         enemy.style.top = enemy.y + 'px';
         enemy.style.background = `transparent url(./image/enemy${enemyImg}.png) center / cover no-repeat`;
         gameArea.appendChild(enemy);
@@ -72,7 +72,7 @@ function startGame(){
     // music.setAttribute('autoplay',true);
     // music.setAttribute('src', './audio.mp3');
     gameArea.appendChild(music);
-    car.style.left = gameArea.offsetWidth/2 - car.offsetWidth/2;
+    car.style.left = gameArea.offsetWidth / 2 - car.offsetWidth / 2;
     car.style.top = 'auto';
     car.style.bottom = '10px';
 
@@ -81,23 +81,23 @@ function startGame(){
     requestAnimationFrame(playGame);
 }
 
-function playGame (){
-    
-    if (setting.start){
+function playGame() {
+
+    if (setting.start) {
         setting.score += setting.speed;
-        score.innerHTML = 'SCORE:<br>  '+ setting.score; 
+        score.innerHTML = 'SCORE:<br>  ' + setting.score;
         moveRoad();
         moveEnemy();
-        if(keys.ArrowLeft && setting.x > 0){
+        if (keys.ArrowLeft && setting.x > 0) {
             setting.x -= setting.speed;
         }
-        if(keys.ArrowRight && setting.x < (gameArea.offsetWidth-car.offsetWidth)){
+        if (keys.ArrowRight && setting.x < (gameArea.offsetWidth - car.offsetWidth)) {
             setting.x += setting.speed;
         }
-        if(keys.ArrowDown && setting.y < (gameArea.offsetHeight-car.offsetHeight)){
+        if (keys.ArrowDown && setting.y < (gameArea.offsetHeight - car.offsetHeight)) {
             setting.y += setting.speed;
         }
-        if(keys.ArrowUp && setting.y > 0){
+        if (keys.ArrowUp && setting.y > 0) {
             setting.y -= setting.speed;
         }
 
@@ -108,7 +108,7 @@ function playGame (){
     }
 }
 
-function startRun (event) {
+function startRun(event) {
     event.preventDefault();
     keys[event.key] = true;
 }
@@ -118,41 +118,41 @@ function stopRun(event) {
     keys[event.key] = false;
 }
 
-function moveRoad(){
+function moveRoad() {
     let lines = document.querySelectorAll('.line');
-    lines.forEach(function(line){
+    lines.forEach(function (line) {
         line.y += setting.speed;
         line.style.top = line.y + 'px';
-        if(line.y >= document.documentElement.clientHeight){
+        if (line.y >= document.documentElement.clientHeight) {
             line.y = -100;
         }
     });
 }
 
-function moveEnemy(){
+function moveEnemy() {
     let enemy = document.querySelectorAll('.enemy');
-    enemy.forEach(function(item){
+    enemy.forEach(function (item) {
         let carRect = car.getBoundingClientRect();
         let enemyRect = item.getBoundingClientRect();
-        if(carRect.top <= enemyRect.bottom && 
+        if (carRect.top <= enemyRect.bottom &&
             carRect.right >= enemyRect.left &&
             carRect.left <= enemyRect.right &&
             carRect.bottom >= enemyRect.top) {
-                setting.start = false;
-                console.warn('ДТП');
-                start.classList.remove('hide');
-                start.style.top = score.offsetHeight;
-                gameArea.appendChild(crash);
-                gameArea.removeChild(music);
+            setting.start = false;
+            console.warn('ДТП');
+            start.classList.remove('hide');
+            start.style.top = score.offsetHeight;
+            gameArea.appendChild(crash);
+            gameArea.removeChild(music);
 
         }
-        item.y += setting.speed/2;
+        item.y += setting.speed / 2;
         item.style.top = item.y + 'px';
         if (item.y >= document.documentElement.clientHeight) {
             item.y = -100 * setting.traffic;
             item.style.left = Math.floor(Math.random() * (gameArea.offsetWidth - 50)) + 'px';
         }
-    });    
+    });
 }
 
 
