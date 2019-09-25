@@ -143,6 +143,7 @@ function moveEnemy(){
                 start.classList.remove('hide');
                 start.style.top = score.offsetHeight;
                 gameArea.appendChild(crash);
+                gameArea.removeChild(music);
 
         }
         item.y += setting.speed/2;
