@@ -3,11 +3,17 @@ const score = document.querySelector('.score'),
     gameArea = document.querySelector('.gameArea'),
     car = document.createElement('div'),
     // music = document.createElement('audio');
-    music = document.createElement('embed');
+    music = document.createElement('embed'),
+    crash = document.createElement('embed');
 
     music.setAttribute('src','./audio.mp3');
     music.setAttribute('type', 'audio/mp3');
     music.classList.add('music');
+
+    crash.setAttribute('src', './audio2.mp3');
+    crash.setAttribute('type', 'audio/mp3');
+    crash.classList.add('music');
+        
 
 
 car.classList.add('car');
@@ -136,6 +142,8 @@ function moveEnemy(){
                 console.warn('ДТП');
                 start.classList.remove('hide');
                 start.style.top = score.offsetHeight;
+                gameArea.appendChild(crash);
+
         }
         item.y += setting.speed/2;
         item.style.top = item.y + 'px';
