@@ -2,4 +2,4 @@
 
 JavaScript game
 
-![ NeedForJS ] (scshot.PNG)
+![ NeedForJS ](scshot.PNG)
