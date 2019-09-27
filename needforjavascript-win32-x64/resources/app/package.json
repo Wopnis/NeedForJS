@@ -1,0 +1,25 @@
+{
+  "name": "needforjavascript",
+  "version": "1.0.0",
+  "description": "JavaScript game",
+  "main": "script.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wopnis/NeedForJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Wopnis/NeedForJS/issues"
+  },
+  "homepage": "https://github.com/Wopnis/NeedForJS#readme",
+  "devDependencies": {
+    "electron": "^6.0.10",
+    "electron-packager": "^14.0.6",
+    "path": "^0.12.7",
+    "url": "^0.11.0"
+  }
+}
